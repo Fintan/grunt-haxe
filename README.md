@@ -23,7 +23,7 @@ grunt.loadNpmTasks('grunt-haxe');
 
 ###Overview
 
-Inside your grunt.js file, add a section named haxe.  Use this section to define the arguments that will be passed the [Haxe compiler][haxe_compiler_doc]
+Inside your grunt.js file, add a section named haxe.  Use this section to define the arguments that will be passed to the [Haxe compiler][haxe_compiler_doc]
 
 
 ###Config Examples
