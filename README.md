@@ -2,7 +2,7 @@
 
 Compile Haxe to JavaScript
 
-Haxe is a open-source, multi-platform programming language with many advanced features.  Visit the [Haxe website] [haxe_www] to learn more.  A list of advanced features can be found [here][haxe_features].
+Haxe is an open-source, multi-platform programming language with many advanced features.  Visit the [Haxe website] [haxe_www] to learn more.  A list of advanced features can be found [here][haxe_features].
 
 ## Getting Started
 Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-haxe`
@@ -28,11 +28,10 @@ Inside your grunt.js file, add a section named haxe.  Use this section to define
 
 ###Config Examples
 
-Then add some configuration for the plugin like so:
 
 #### Minimal Example
 
-As a minimum a project requires 3 properties to be specified in order to successfully compile:
+A project requires at least the following three properties in order to successfully compile:
 
 ``` javascript
 haxe: {
@@ -43,15 +42,16 @@ haxe: {
 	}
 }
 ```
-The Haxe project can then be compiled using the following command:
+The Haxe project called 'minimal_example' can then be compiled using the following command:
 
 ```
 $ grunt haxe:minimal_example
 ```
 
+
 #### Complete Example
 
-This example show all available options for configuring your project
+This example shows all available options for configuring your project;
 
 ``` javascript
 haxe: {
@@ -59,8 +59,8 @@ haxe: {
 		main: 'Main',
 		classpath:['app'],
 		libs:['casalib'], /*specify haxelib libraries */
-		flags:['something', 'createjs'], /* define a conditional compilation flags */
-		macros:['mymacro.doSomethingCool()'], /*call the given macro*/
+		flags:['something', 'createjs'], /* define conditional compilation flags */
+		macros:['Mymacro.doSomethingCool()'], /*call the given macro*/
 		resources:['activity/xml/map-layout.json@map_layout'], /*define named resource files*/
 		misc:['-debug', "--dead-code-elimination", "--js-modern"],/* add any other arguments*/
 		output:'app/scripts/output.js',
@@ -74,7 +74,9 @@ haxe: {
 
 #### Composite Example
 
-The value of the option property is typically a string that defines the name and location of a file to compile to but it can also be an object literal that in turn contains an output property.  The following example shows how to configure debug and release builds for a project by defining common properties to both in a single place.  Unique settings for each build can also defined;
+The value of the option property is typically a string that defines the name and location of a file to compile to but it can also be an object literal that in turn contains an output property.  
+
+The following example shows how to configure debug and release builds for a project by defining common properties for both in a single place.  Unique settings for each build are then nested;
 
 
 ``` javascript
