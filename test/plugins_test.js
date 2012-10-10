@@ -26,9 +26,9 @@ exports['plugins'] = {
     done();
   },
   'helper': function(test) {
-    test.expect(0);
+    test.expect(1);
     // tests here
-    //test.equal(grunt.helper('plugins'), 'plugins!!!', 'should return the correct value.');
+    test.equal('just a test', 'just a test', 'should return the correct value.');
     test.done();
   }
 };
