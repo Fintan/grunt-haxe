@@ -4,6 +4,7 @@ machine:
       - tar -zxvf haxe-2.10-linux.tar.gz 
       - ls ../
       - ls ../ubuntu
+      - ls haxe-2.10-linux
       - ../../haxe-2.10-linux/haxe
       - /home/ubuntu/.rvm/scripts/haxe-2.10-linux/haxe
       - ./haxe-2.10-linux/haxe
