@@ -2,6 +2,8 @@ machine:
   pre:
       - curl -k -L -o haxe-2.10-linux.tar.gz http://haxe.org/file/haxe-2.10-linux.tar.gz
       - tar -zxvf haxe-2.10-linux.tar.gz 
+      - chmod +x ./haxe-2.10-linux/haxe
+      - chmod +x ./haxe-2.10-linux/haxelib
       - ./haxe-2.10-linux/haxe
       - echo 'export HAXE_LIBRARY_PATH=/home/ubuntu/haxe-2.10-linux/std:.' >> ~/.circlerc
       - echo 'export HAXE_HOME=/home/ubuntu/haxe-2.10-linux/haxe' >> ~/.circlerc
