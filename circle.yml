@@ -1,7 +1,0 @@
-machine:
-  pre:
-      - curl -k -L -o haxe-2.10-linux.tar.gz http://haxe.org/file/haxe-2.10-linux.tar.gz
-      - tar -zxvf haxe-2.10-linux.tar.gz 
-      - ls ../
-      - ls ../solr
-      - ls ../ubuntu
