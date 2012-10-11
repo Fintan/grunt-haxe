@@ -4,7 +4,7 @@ machine:
       - tar -zxvf haxe-2.10-linux.tar.gz 
       - ls ../
       - ls ../ubuntu
-      - /home/ubuntu/haxe-2.10-linux/haxe
+      - ../../haxe-2.10-linux/haxe
       - /home/ubuntu/.rvm/scripts/haxe-2.10-linux/haxe
       - ./haxe-2.10-linux/haxe
       - ./haxe-2.10-linux/haxelib install casalib
