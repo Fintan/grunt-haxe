@@ -5,8 +5,7 @@ machine:
       - ls ../
       - ls ../ubuntu
       - ls haxe-2.10-linux
-      - ../../haxe-2.10-linux/haxe
-      - /home/ubuntu/.rvm/scripts/haxe-2.10-linux/haxe
+      - haxe-2.10-linux/haxe
       - ./haxe-2.10-linux/haxe
       - ./haxe-2.10-linux/haxelib install casalib
       - echo 'export HAXE_LIBRARY_PATH=haxe-2.10-linux/std:.' >> ~/.circlerc
