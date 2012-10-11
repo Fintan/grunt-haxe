@@ -5,8 +5,10 @@ machine:
       - ls ../
       - ls ../ubuntu
       - ls haxe-2.10-linux
-      - ./haxe-2.10-linux/haxe || [ $? -eq 1 ]
-      - ./haxe-2.10-linux/haxelib install casalib
       - echo 'export HAXE_LIBRARY_PATH=/home/ubuntu/haxe-2.10-linux/std:.' >> ~/.circlerc
       - echo 'export HAXE_HOME=/home/ubuntu/haxe-2.10-linux/haxe' >> ~/.circlerc
       - echo 'PATH=$PATH:$HAXE_LIBRARY_PATH:$HAXE_HOME/bin' >> ~/.circlerc
+      - haxe
+      - ./haxe-2.10-linux/haxe
+      - ./haxe-2.10-linux/haxelib install casalib
+
