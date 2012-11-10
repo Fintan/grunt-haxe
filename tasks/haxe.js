@@ -50,11 +50,6 @@ module.exports = function(grunt) {
 				hasValueProb = true;
 				valueProbStr += "\nmain value is not a string";
 
-			} else if (data.main.charAt(0) !== data.main.charAt(0).toUpperCase()) {
-
-				hasValueProb = true;
-				valueProbStr += "\nmain value ('" + data.main + "') should be capitalised because it is a Class";
-
 			}
 
 			if (!_.contains(dataKeys, "classpath")) {
