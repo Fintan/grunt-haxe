@@ -40,18 +40,6 @@ module.exports = function(grunt) {
 			var hasValueProb = false;
 			var valueProbStr = "";
 
-			if (!_.contains(dataKeys, "main")) {
-
-				isMissingProps = true;
-				missingPropsStr += " 'main' ";
-
-			} else if (!_.isString(data.main)) {
-
-				hasValueProb = true;
-				valueProbStr += "\nmain value is not a string";
-
-			}
-
 			if (!_.contains(dataKeys, "classpath")) {
 
 				isMissingProps = true;
@@ -172,7 +160,8 @@ module.exports = function(grunt) {
 
 	var assembleCommand = function(data) {
 
-			var dirs = assemblePart(data.classpath, '-cp'),
+			var main = assemblePart(data.main, 'main'),
+				dirs = assemblePart(data.classpath, '-cp'),
 				libs = assemblePart(data.libs, '-lib'),
 				flags = assemblePart(data.flags, '-D'),
 				macros = assemblePart(data.macros, '--macro'),
@@ -192,7 +181,7 @@ module.exports = function(grunt) {
 				outputType = ' -cpp ';
 			}
 
-			return '-main ' + data.main + outputType + data.output + dirs + libs + flags + macros + resources + misc;
+			return main + outputType + data.output + dirs + libs + flags + macros + resources + misc;
 
 		};
 
