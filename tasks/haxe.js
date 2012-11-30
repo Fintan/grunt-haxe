@@ -160,7 +160,7 @@ module.exports = function(grunt) {
 
 	var assembleCommand = function(data) {
 
-			var main = assemblePart(data.main, 'main'),
+			var main = _.isString(data.main) && data.main.length > 0 ? '-main ' + data.main : "",
 				dirs = assemblePart(data.classpath, '-cp'),
 				libs = assemblePart(data.libs, '-lib'),
 				flags = assemblePart(data.flags, '-D'),
