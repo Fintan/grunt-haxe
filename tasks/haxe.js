@@ -11,11 +11,13 @@ module.exports = function(grunt) {
 
 	var _ = grunt.utils._;
 	var log = grunt.log;
+	var suppressFatal;
 
 	grunt.registerMultiTask('haxe', 'Compile Haxe projects', function(param) {
 
 		var data = this.data;
 		var done = this.async();
+		suppressFatal = data.force;
 
 		validateEssentialConfigData(data);
 
@@ -146,7 +148,7 @@ module.exports = function(grunt) {
 				if (err) {
 					if (_.isFunction(dataErr)) {
 						dataErr(stderr);
-					} else if (data.failOnError !== false) {
+					} else if (data.failOnError !== false && !suppressFatal) {
 						grunt.fatal(err);
 					} else {
 						log.error(err);

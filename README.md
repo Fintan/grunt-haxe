@@ -67,7 +67,8 @@ haxe: {
 		onError: function (e) {
 			/*custom error message */
 			console.log( 'There was a problem...\n' + e );
-		}
+		},
+		force:true /*continue processing task (like --force)*/
 	}
 }
 ```
