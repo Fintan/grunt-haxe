@@ -99,6 +99,18 @@ haxe: {
 }
 ```
 
+#### HXML Example
+
+The standard Haxe build file is a .hxml file.  This can be used as an alternative to defining all the properties directly in the grunt file.
+
+``` javascript
+haxe: {
+	hxml_example: {
+		hxml: 'build.hxml'
+	}
+}
+```
+
 ## License
 Copyright (c) 2012 Fintan Boyle  
 Licensed under the MIT license.

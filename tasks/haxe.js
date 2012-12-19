@@ -19,16 +19,28 @@ module.exports = function(grunt) {
 		var done = this.async();
 		suppressFatal = data.force;
 
-		validateEssentialConfigData(data);
-
-		if (_.isString(data.output)) {
-			//simple single target project
-			buildApp(data, done);
-
+		if(data.hxml) {
+			
+			if (data.hxml.indexOf('.hxml') == -1) {
+				data.hxml += '.hxml';
+			}
+			
+			buildApp(data.hxml, done);
+			
 		} else {
-			//multi-target project
-			buildApp(buildMultiAppCmd(data, done, param), done);
+			
+			validateEssentialConfigData(data);
 
+			if (_.isString(data.output)) {
+				//simple single target project
+				buildApp(data, done);
+
+			} else {
+				//multi-target project
+				buildApp(buildMultiAppCmd(data, done, param), done);
+
+			}
+			
 		}
 
 	});
