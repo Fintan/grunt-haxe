@@ -9,7 +9,7 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	var _ = grunt.utils._;
+	var _ = grunt.util._;
 	var log = grunt.log;
 	var suppressFatal;
 

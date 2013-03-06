@@ -1,7 +1,7 @@
 {
   "name": "grunt-haxe",
   "description": "Compile Haxe to JavaScript",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "homepage": "https://github.com/Fintan/grunt-haxe",
   "author": {
     "name": "Fintan Boyle",
@@ -27,13 +27,14 @@
   "scripts": {
     "test": "grunt test"
   },
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.3.15"
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-nodeunit": "~0.1.2"
   },
   "keywords": [
-    "gruntplugin", "haxe"
+    "gruntplugin",
+    "haxe"
   ]
 }

@@ -5,7 +5,9 @@ Compile Haxe to JavaScript
 Haxe is an open-source, multi-platform programming language with many advanced features.  Visit the [Haxe website] [haxe_www] to learn more.  A list of advanced features can be found [here][haxe_features].
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-haxe`
+Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-haxe --save-dev`
+
+(Note: install v0.1.7 of this plugin if you are still using Grunt v0.3)
 
 Then add this line to your project's `grunt.js` gruntfile:
 
