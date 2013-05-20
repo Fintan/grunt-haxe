@@ -181,18 +181,24 @@ module.exports = function(grunt) {
 				macros = assemblePart(data.macros, '--macro'),
 				resources = assemblePart(data.resources, '-resource'),
 				misc = assemblePart(data.misc, '').split("  ").join(" "),
-				outputType;
+				outputType = data.target;
 
-			if (data.output.indexOf('.js') !== -1) {
-				outputType = ' -js ';
-			} else if (data.output.indexOf('.swf') !== -1) {
-				outputType = ' -swf ';
-			} else if (data.output.indexOf('.php') !== -1) {
-				outputType = ' -php ';
-			} else if (data.output.indexOf('.n') !== -1) {
-				outputType = ' -neko ';
-			} else {
-				outputType = ' -cpp ';
+			// Guess the type from extension if it's not provided
+			if (outputType == null) {
+				if (data.output.indexOf('.js') !== -1) {
+					outputType = ' -js ';
+				} else if (data.output.indexOf('.swf') !== -1) {
+					outputType = ' -swf ';
+				} else if (data.output.indexOf('.php') !== -1) {
+					outputType = ' -php ';
+				} else if (data.output.indexOf('.n') !== -1) {
+					outputType = ' -neko ';
+				} else {
+					outputType = ' -cpp ';
+				}
+			}
+			else{
+				outputType = ' -'+outputType + ' '
 			}
 
 			return main + outputType + data.output + dirs + libs + flags + macros + resources + misc;
