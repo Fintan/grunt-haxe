@@ -9,9 +9,10 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	var _ = grunt.util._;
-	var log = grunt.log;
-	var suppressFatal;
+	var _ = require('lodash'),
+		 log = grunt.log,
+		 async = require('async'),
+		 suppressFatal;
 
 	grunt.registerMultiTask('haxe', 'Compile Haxe projects', function(param) {
 
@@ -140,37 +141,34 @@ module.exports = function(grunt) {
 	var buildApp = function(data, done) {
 			var exec = require('child_process').exec;
 			var dataErr = data.onError;
-			var cmd;
+			var cmd = [];
 			if (_.isString(data)) {
-				cmd = "haxe " + data;
+				cmd[0] = data;
 			} else {
-				cmd = "haxe " + assembleCommand(data);
+				cmd[0] = assembleCommand(data);
 			}
 
-			//log.write('\nBuilding Haxe project... \n' + cmd + '\n');
-			exec(cmd, data.execOptions, function(err, stdout, stderr) {
-
-				log.write('\nBuilding Haxe project... \n' + cmd + '\n');
-				log.write(stdout + '\n\n');
-
-				if (stdout) {
-					log.write(stdout);
+			log.write('\nBuilding Haxe project... \n' + cmd + '\n');
+			grunt.util.spawn({
+				cmd: 'haxe',
+				args: cmd,
+				opts: {
+					stdio: 'inherit'
 				}
-
-				if (err) {
+			}, function(error, result, code ){
+				
+				if (error) {
 					if (_.isFunction(dataErr)) {
 						dataErr(stderr);
 					} else if (data.failOnError !== false && !suppressFatal) {
-						grunt.fatal(err);
+						grunt.fatal(error);
 					} else {
-						log.error(err);
+						log.error(error);
 					}
 				}
-
 				done();
 			});
-
-		};
+	};
 
 	var assembleCommand = function(data) {
 

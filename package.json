@@ -27,7 +27,9 @@
   "scripts": {
     "test": "grunt test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash":"~2.4.1"   
+  },
   "devDependencies": {
     "grunt": "~0.4.0",
     "grunt-contrib-jshint": "~0.2.0",
@@ -39,5 +41,13 @@
   "keywords": [
     "gruntplugin",
     "haxe"
-  ]
+  ],
+  "readme": "# Grunt-Haxe\n\nCompile Haxe to JavaScript\n\nHaxe is an open-source, multi-platform programming language with many advanced features.  Visit the [Haxe website] [haxe_www] to learn more.  A list of advanced features can be found [here][haxe_features].\n\n## Getting Started\nInstall this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-haxe --save-dev`\n\n(Note: install v0.1.7 of this plugin if you are still using Grunt v0.3)\n\nThen add this line to your project's `grunt.js` gruntfile:\n\n```javascript\ngrunt.loadNpmTasks('grunt-haxe');\n```\n\n[grunt]: https://github.com/gruntjs/grunt\n[getting_started]: https://github.com/gruntjs/grunt/blob/master/docs/getting_started.md\n[haxe_compiler_doc]: http://haxe.org/doc/compiler\n[haxe_www]: http://haxe.org\n[haxe_features]: http://haxe.org/doc/features#language-features\n\n## Documentation\n\n###Overview\n\nInside your grunt.js file, add a section named haxe.  Use this section to define the arguments that will be passed to the [Haxe compiler][haxe_compiler_doc]\n\n\n###Config Examples\n\n\n#### Minimal Example\n\nA project requires at least the following three properties in order to successfully compile:\n\n``` javascript\nhaxe: {\n\tminimal_example: {\n\t\tmain: 'Main', /*name of the startup class*/\n\t\tclasspath:['app'],/*specify folder/s where source code is located*/\n\t\toutput:'dist/output.js' /*compile to this file*/\n\t}\n}\n```\nThe Haxe project called 'minimal_example' can then be compiled using the following command:\n\n```\n$ grunt haxe:minimal_example\n```\n\n\n#### Complete Example\n\nThis example shows all available options for configuring your project;\n\n``` javascript\nhaxe: {\n\tcomplete_example: {\n\t\tmain: 'Main',\n\t\tclasspath:['app'],\n\t\tlibs:['casalib'], /*specify haxelib libraries */\n\t\tflags:['something', 'createjs'], /* define conditional compilation flags */\n\t\tmacros:['Mymacro.doSomethingCool()'], /*call the given macro*/\n\t\tresources:['activity/xml/map-layout.json@map_layout'], /*define named resource files*/\n\t\tmisc:['-debug', \"--dead-code-elimination\", \"--js-modern\"],/* add any other arguments*/\n\t\toutput:'app/scripts/output.js',\n\t\tonError: function (e) {\n\t\t\t/*custom error message */\n\t\t\tconsole.log( 'There was a problem...\\n' + e );\n\t\t},\n\t\tforce:true /*continue processing task (like --force)*/\n\t}\n}\n```\n\n#### Composite Example\n\nThe value of the option property is typically a string that defines the name and location of a file to compile to but it can also be an object literal that in turn contains an output property.  \n\nThe following example shows how to configure debug and release builds for a project by defining common properties for both in a single place.  Unique settings for each build are then nested;\n\n\n``` javascript\nhaxe: {\n\tmulti_target_example: {\n\t\tmain: 'Main',\n\t\tclasspath:['app'],\n\t\toutput:{\n\t\t\tdebug:{\n\t\t\t\tmisc:['-debug'],/*-debug results in a js source map*/\n\t\t\t\toutput: 'dist/output.js'\n\t\t\t},\n\t\t\trelease: {\n\t\t\t\tmisc:[\"--dead-code-elimination\", \"--js-modern\"],\n\t\t\t\toutput: 'app/scripts/output.js'\n\t\t\t}\n\t\t}\n\t}\n}\n```\n\n#### HXML Example\n\nThe standard Haxe build file is a .hxml file.  This can be used as an alternative to defining all the properties directly in the grunt file.\n\n``` javascript\nhaxe: {\n\thxml_example: {\n\t\thxml: 'build.hxml'\n\t}\n}\n```\n\n## License\nCopyright (c) 2012 Fintan Boyle  \nLicensed under the MIT license.\n",
+  "readmeFilename": "README.md",
+  "_id": "grunt-haxe@0.1.10",
+  "dist": {
+    "shasum": "1b91ca0fc7cf5198cb2c2472a36240672f07be72"
+  },
+  "_resolved": "git://github.com/rbvea/grunt-haxe.git#0a5bce5930a85a17a083a8284f23f97e1fe79b1f",
+  "_from": "grunt-haxe@git://github.com/rbvea/grunt-haxe.git"
 }
