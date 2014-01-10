@@ -11,7 +11,6 @@ module.exports = function(grunt) {
 
 	var _ = require('lodash'),
 		 log = grunt.log,
-		 async = require('async'),
 		 suppressFatal;
 
 	grunt.registerMultiTask('haxe', 'Compile Haxe projects', function(param) {
