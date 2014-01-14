@@ -97,9 +97,7 @@ module.exports = function(grunt) {
 				grunt.fatal("'" + param + "' as an output target does not exist");
 			}
 
-			var cmd = '';
-
-			var commandSep = " --next ";
+			var cmds = [];
 
 			_.forEach(outputKeys, function(outputKey) {
 
@@ -121,23 +119,20 @@ module.exports = function(grunt) {
 
 					if (_.isString(item.output)) {
 
-						cmd += assembleCommand(dat);
+						cmds.push(assembleCommand(dat));
 
 					} else {
 						//handle deeply nested output settings
-						cmd += buildMultiAppCmd(dat, done, param);
+						cmds.push(buildMultiAppCmd(dat, done, param));
 
 					}
-
-					cmd += commandSep;
 
 				}
 
 			});
 
-			cmd = cmd.substring(0, cmd.length - commandSep.length);
+			var cmd = cmds.join(" --next ");
 			return cmd;
-
 		};
 /*
 		data can be either a formatted string or an object literal
