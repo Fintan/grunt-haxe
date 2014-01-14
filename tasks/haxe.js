@@ -99,6 +99,8 @@ module.exports = function(grunt) {
 
 			var cmd = '';
 
+			var commandSep = " --next ";
+
 			_.forEach(outputKeys, function(outputKey) {
 
 				var item = data.output[outputKey];
@@ -119,7 +121,7 @@ module.exports = function(grunt) {
 
 					if (_.isString(item.output)) {
 
-						cmd += assembleCommand(dat) + " --next ";
+						cmd += assembleCommand(dat);
 
 					} else {
 						//handle deeply nested output settings
@@ -127,10 +129,13 @@ module.exports = function(grunt) {
 
 					}
 
+					cmd += commandSep;
+
 				}
 
 			});
 
+			cmd = cmd.substring(0, cmd.length - commandSep.length);
 			return cmd;
 
 		};
@@ -141,13 +146,16 @@ module.exports = function(grunt) {
 			var exec = require('child_process').exec;
 			var dataErr = data.onError;
 			var cmd = [];
+			var cmdStr;
 			if (_.isString(data)) {
-				cmd[0] = data;
+				cmdStr = data;
 			} else {
-				cmd[0] = assembleCommand(data);
+				cmdStr = assembleCommand(data);
 			}
 
-			log.write('\nBuilding Haxe project... \n' + cmd + '\n');
+			cmd = cmdStr.split(" ").filter(function (s) { return s.length>0; });
+
+			console.info("str "+ cmd);
 			grunt.util.spawn({
 				cmd: 'haxe',
 				args: cmd,
