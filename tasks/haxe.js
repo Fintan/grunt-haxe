@@ -153,9 +153,9 @@ module.exports = function(grunt) {
 				cmdStr = assembleCommand(data);
 			}
 
+			log.write('\nBuilding Haxe project... \n' + cmdStr + '\n');
 			cmd = cmdStr.split(" ").filter(function (s) { return s.length>0; });
 
-			console.info("str "+ cmd);
 			grunt.util.spawn({
 				cmd: 'haxe',
 				args: cmd,
