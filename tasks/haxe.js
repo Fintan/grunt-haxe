@@ -97,7 +97,7 @@ module.exports = function(grunt) {
 				grunt.fatal("'" + param + "' as an output target does not exist");
 			}
 
-			var cmd = '';
+			var cmds = [];
 
 			_.forEach(outputKeys, function(outputKey) {
 
@@ -119,11 +119,11 @@ module.exports = function(grunt) {
 
 					if (_.isString(item.output)) {
 
-						cmd += assembleCommand(dat) + " --next ";
+						cmds.push(assembleCommand(dat));
 
 					} else {
 						//handle deeply nested output settings
-						cmd += buildMultiAppCmd(dat, done, param);
+						cmds.push(buildMultiAppCmd(dat, done, param));
 
 					}
 
@@ -131,8 +131,8 @@ module.exports = function(grunt) {
 
 			});
 
+			var cmd = cmds.join(" --next ");
 			return cmd;
-
 		};
 /*
 		data can be either a formatted string or an object literal
@@ -141,13 +141,16 @@ module.exports = function(grunt) {
 			var exec = require('child_process').exec;
 			var dataErr = data.onError;
 			var cmd = [];
+			var cmdStr;
 			if (_.isString(data)) {
-				cmd[0] = data;
+				cmdStr = data;
 			} else {
-				cmd[0] = assembleCommand(data);
+				cmdStr = assembleCommand(data);
 			}
 
-			log.write('\nBuilding Haxe project... \n' + cmd + '\n');
+			log.write('\nBuilding Haxe project... \n' + cmdStr + '\n');
+			cmd = cmdStr.split(" ").filter(function (s) { return s.length>0; });
+
 			grunt.util.spawn({
 				cmd: 'haxe',
 				args: cmd,
