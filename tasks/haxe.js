@@ -148,6 +148,8 @@ module.exports = function(grunt) {
 				cmdStr = assembleCommand(data);
 			}
 
+			cmdStr = grunt.template.process(cmdStr);
+
 			log.write('\nBuilding Haxe project... \n' + cmdStr + '\n');
 			cmd = cmdStr.split(" ").filter(function (s) { return s.length>0; });
 
